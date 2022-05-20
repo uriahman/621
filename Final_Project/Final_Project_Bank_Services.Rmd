@@ -10,7 +10,8 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
+## Overview
+<p>This is a banking and marketing dataset that was created by Sérgio Moro (ISCTE-IUL), Paulo Cortez (Univ. Minho) and Paulo Rita (ISCTE-IUL).It is a binary classification problem with the goal of predicting if the client will subscribe a bank term deposit (variable y).</p>
 ```{r echo=FALSE}
 library(ggplot2)
 library(kableExtra)
@@ -24,8 +25,6 @@ library(pscl)
 library(pROC)
 library(caret)
 library(xgboost)
-
-
 ```
 
 ```{r}
@@ -55,10 +54,9 @@ d %>% select(.,c(skim_variable,n_missing,complete_rate,numeric.mean,numeric.sd))
 remove(d)
 ```
 
-
-
 ### Balance
 <p>The difference between those not enrolling into the services and those that due is heavily imbalanced. This will make predicting those that enroll more difficult.</p>
+
 ```{r warning=F, echo=FALSE}
 ggplot(og_training,aes(y))+
   geom_histogram(stat='count',fill='blue')
@@ -485,3 +483,11 @@ xgb_pred_prob2 <- ifelse(xgb_pred2 >=thresh3$Threshold[1],1,0 )
 ```{r}
 confusionMatrix(as.factor(xgb_pred_prob2),as.factor(t_label))
 ```
+
+
+\newpage
+
+## Citations
+<p>[Moro et al., 2014] S. Moro, P. Cortez and P. Rita. A Data-Driven Approach to Predict the Success of Bank Telemarketing. Decision Support Systems, In press, http://dx.doi.org/10.1016/j.dss.2014.03.001</p>
+
+## Appendix
