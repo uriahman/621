@@ -27,7 +27,7 @@ library(caret)
 library(xgboost)
 ```
 
-```{r}
+```{r echo=FALSE}
 og_data <- read.csv('/home/ray/Desktop/621/Final_Project/Possible/bank-additional/bank-additional/bank-additional-full.csv',sep=";")
 
 og_data2 <- read.csv('/home/ray/Desktop/621/Final_Project/Possible/bank-additional/bank-additional/bank-additional.csv',sep=";")
@@ -65,7 +65,7 @@ ggplot(og_training,aes(y))+
 ### Unique Values in Numeric Fields
 <p>From the unique values in the numeric fields we can see that several variables can be grouped. Such as  cons.price.idx and cons.conf.idx. The previous variable looks like it should either be grouped as 0's and 1's signifying previous conversations or simply factored into groups of the number of conversations.</p>
 
-```{r warning=F}
+```{r echo=FALSE,warning=F}
 for(i in 1:21){
   name <- colnames(og_training[i])
   if((typeof(og_training[,i]) == 'integer')|| (typeof(og_training[,i]) == 'double')) {
@@ -191,7 +191,7 @@ identical(names(dummy),names(dummy_testing))
 
 ### Unbalance
 
-```{r}
+```{r echo=FALSE}
 dummy_smote <- SMOTE(dummy,dummy$y)
 remove(dummy)
 ```
@@ -205,7 +205,7 @@ ggplot(dummy_smote$data,aes(x=y))+
 ### Training and Testing sets
 
 
-```{r}
+```{r }
 set.seed(93384)
 trainIndex <- createDataPartition(dummy_smote$data$y, p = .65,
                                   list = FALSE,
